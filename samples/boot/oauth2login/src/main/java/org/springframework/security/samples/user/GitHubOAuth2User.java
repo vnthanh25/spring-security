@@ -15,18 +15,17 @@
  */
 package org.springframework.security.samples.user;
 
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.oauth2.core.user.OAuth2User;
-
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.springframework.security.core.GrantedAuthority;
+
 /**
  * @author Joe Grandja
  */
-public class GitHubOAuth2User implements OAuth2User {
+public class GitHubOAuth2User implements org.springframework.security.oauth2.core.user.OAuth2User {
 	private String id;
 	private String name;
 	private String login;
@@ -44,7 +43,7 @@ public class GitHubOAuth2User implements OAuth2User {
 	public Map<String, Object> getAttributes() {
 		Map<String, Object> attributes = new HashMap<>();
 		attributes.put("id", this.getId());
-		attributes.put("name", this.getName());
+		//attributes.put("name", this.getName());
 		attributes.put("login", this.getLogin());
 		attributes.put("email", this.getEmail());
 		return attributes;
@@ -56,11 +55,6 @@ public class GitHubOAuth2User implements OAuth2User {
 
 	public void setId(String id) {
 		this.id = id;
-	}
-
-	@Override
-	public String getName() {
-		return this.name;
 	}
 
 	public void setName(String name) {
